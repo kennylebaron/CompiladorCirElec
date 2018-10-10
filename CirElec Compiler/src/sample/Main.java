@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sun.misc.Launcher;
+import sample.controllers.Splash;
 
 public class Main extends Application {
     public static int duracion=300000;
@@ -22,7 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/sample.fxml"));
         primaryStage.setTitle("CirElec Compiler");
         primaryStage.setScene(new Scene(root, 960, 600));
         primaryStage.show();

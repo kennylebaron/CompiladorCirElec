@@ -1,50 +1,37 @@
-package sample;
+package sample.Constants;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import org.fxmisc.richtext.CodeArea;
-import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
-import org.reactfx.Subscription;
 
-import java.io.File;
-import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Controller extends Application {
-    private Stage stage;
-    @FXML private Pane paneSote;
-
-    private static final String[] KEYWORDS = new String[] {
+public final class Configs {
+    public static final String Username="";
+    public static final String[] KEYWORDS = new String[] {
             "abstract", "assert", "boolean", "break", "byte",
             "case", "catch", "char", "class", "const",
             "continue", "default", "do", "double", "else",
             "enum", "extends", "final", "finally", "float",
             "for", "goto", "if", "implements", "import",
             "instanceof", "int", "interface", "long", "native",
-            "new", "package", "private", "protected", "public",
+            "new", "package", "public", "protected", "public",
             "return", "short", "static", "strictfp", "super",
             "switch", "synchronized", "this", "throw", "throws",
             "transient", "try", "void", "volatile", "while"
     };
 
-    private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
-    private static final String PAREN_PATTERN = "\\(|\\)";
-    private static final String BRACE_PATTERN = "\\{|\\}";
-    private static final String BRACKET_PATTERN = "\\[|\\]";
-    private static final String SEMICOLON_PATTERN = "\\;";
-    private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
-    private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
+    public static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
+    public static final String PAREN_PATTERN = "\\(|\\)";
+    public static final String BRACE_PATTERN = "\\{|\\}";
+    public static final String BRACKET_PATTERN = "\\[|\\]";
+    public static final String SEMICOLON_PATTERN = "\\;";
+    public static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
+    public static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
 
-    private static final Pattern PATTERN = Pattern.compile(
+    public static final Pattern PATTERN = Pattern.compile(
             "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
                     + "|(?<PAREN>" + PAREN_PATTERN + ")"
                     + "|(?<BRACE>" + BRACE_PATTERN + ")"
@@ -54,7 +41,7 @@ public class Controller extends Application {
                     + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
-    private static final String sampleCode = String.join("\n", new String[] {
+    public static final String sampleCode = String.join("\n", new String[] {
             "package com.example;",
             "",
             "import java.util.*;",
@@ -76,38 +63,7 @@ public class Controller extends Application {
             "",
             "}"
     });
-
-    CodeArea codeArea = new CodeArea();
-
-    @FXML protected void initialize(){
-        // add line numbers to the left of area
-        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-        codeArea.replaceText(0, 0, sampleCode);
-        codeArea.setPrefSize(800,500);
-        Subscription cleanupWhenNoLongerNeedIt = codeArea
-                .multiPlainChanges()
-                .successionEnds(Duration.ofMillis(500))
-                .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
-        paneSote.getChildren().add(codeArea);
-    }//llave initialize
-
-    public void evtclose(ActionEvent event){
-        System.exit(0);
-    }
-
-    public void evtopen(ActionEvent event){
-        FileChooser of=new FileChooser();
-        of.setTitle("Abrir archivo Food Compiler yea");
-        FileChooser.ExtensionFilter filtro= new FileChooser.ExtensionFilter("Archivos .food","*.food");
-        of.getExtensionFilters().add(filtro);
-        File file=of.showOpenDialog(stage);
-    }//llave abrir
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        this.stage=stage;
-    }
-    private static StyleSpans<Collection<String>> computeHighlighting(String text) {
+    public static StyleSpans<Collection<String>> computeHighlighting(String text) {
         Matcher matcher = PATTERN.matcher(text);
         int lastKwEnd = 0;
         StyleSpansBuilder<Collection<String>> spansBuilder
