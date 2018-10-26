@@ -85,6 +85,10 @@ public class Controller extends Application {
             }
         }//llave fori
         long tfinal=System.currentTimeMillis()-tinicial;
-        txtconsola.setText(txtconsola.getText()+" \n"+ "Process compiled in : "+tfinal+" milliseconds");
+        if (tfinal==1){
+            txtconsola.setText(txtconsola.getText() + " \n" + "Process compiled in : " + tfinal + " millisecond");
+        }else {
+            txtconsola.setText(txtconsola.getText() + " \n" + "Process compiled in : " + tfinal + " milliseconds");
+        }
     }//llave compilar
 }

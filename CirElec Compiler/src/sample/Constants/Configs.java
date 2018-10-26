@@ -46,7 +46,8 @@ public final class Configs {
             "connect r1 to ps1",
             "add new ground g1",
             "connect g1 to r1",
-            "print(\"Hello World\")"
+            "if (r1 connect ps1)-->print(\"Execute process successful\")",
+            ""
 
     });
     public static StyleSpans<Collection<String>> computeHighlighting(String text) {
@@ -79,7 +80,7 @@ public final class Configs {
             "\\s*value\\s+for\\s+\\w+\\s*=\\s*\\d+\\s+ohm\\s*",
             "\\s*value\\s+for\\s+\\w+\\s*=\\s*\\d+ volt\\s*",
             "\\s*add\\s+new\\s+ground\\s+\\w+\\s*",
-            "\\s*//(.+.)?\\s*",
-            "\\s*print\\s*[(][\"](.+.)?[\"][)]\\s*|print[(][\"](.+.)?[\"]\\+.+.[)]\\s*",
+            "\\s*//(.+.)?\\s*",                                      //
+            "if\\s*[(]\\s*(.+.)?\\s*[)]\\s*-->\\s*print\\s*[(]\\s*[\"](.+.)?[\"]\\s*[)]\\s*|if\\s*[(]\\s*(.+.)?\\s*[)]\\s*-->\\s*print\\s*[(]\\s*[\"](.+.)?[\"]\\s*(.+.)\\s*[)]\\s*",
     };
 }
