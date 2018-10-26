@@ -11,19 +11,14 @@ import java.util.regex.Pattern;
 public final class Configs {
     public static final String Username="";
     public static final String[] KEYWORDS = new String[] {
-            "abstract", "assert", "boolean", "break", "byte",
-            "case", "catch", "char", "class", "const",
-            "continue", "default", "do", "double", "else",
-            "enum", "extends", "final", "finally", "float",
-            "for", "goto", "if", "implements", "import",
-            "instanceof", "int", "interface", "long", "native",
-            "new", "package", "public", "protected", "public",
-            "return", "short", "static", "strictfp", "super",
-            "switch", "synchronized", "this", "throw", "throws",
-            "transient", "try", "void", "volatile", "while"
+            "connect","component","switch","default","if","while","create","new","add"
+    };
+    public static final String[] KEYWORDS2 = new String[] {
+            "node","current","voltage","ohm","ohms","volt","hertz","cable","resistance","powersource","ground"
     };
 
     public static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
+    public static final String KEYWORD2_PATTERN ="\\b(" + String.join("|", KEYWORDS2)+ ")\\b";
     public static final String PAREN_PATTERN = "\\(|\\)";
     public static final String BRACE_PATTERN = "\\{|\\}";
     public static final String BRACKET_PATTERN = "\\[|\\]";
@@ -33,6 +28,7 @@ public final class Configs {
 
     public static final Pattern PATTERN = Pattern.compile(
             "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
+                    + "|(?<KEYWORD2>" + KEYWORD2_PATTERN + ")"
                     + "|(?<PAREN>" + PAREN_PATTERN + ")"
                     + "|(?<BRACE>" + BRACE_PATTERN + ")"
                     + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
@@ -42,26 +38,16 @@ public final class Configs {
     );
 
     public static final String sampleCode = String.join("\n", new String[] {
-            "package com.example;",
-            "",
-            "import java.util.*;",
-            "",
-            "public class Foo extends Bar implements Baz {",
-            "",
-            "    /*",
-            "     * multi-line comment",
-            "     */",
-            "    public static void main(String[] args) {",
-            "        // single-line comment",
-            "        for(String arg: args) {",
-            "            if(arg.length() != 0)",
-            "                System.out.println(arg);",
-            "            else",
-            "                System.err.println(\"Warning: empty string as argument\");",
-            "        }",
-            "    }",
-            "",
-            "}"
+            "//Se crea un a resistencia y un fuente de poder",
+            "create new resistance r1",
+            "create new powersource ps1",
+            "value for r1 = 100 ohm",
+            "value for ps1 = 6 volt",
+            "connect r1 to ps1",
+            "add new ground g1",
+            "connect g1 to r1",
+            "print(\"Hello World\")"
+
     });
     public static StyleSpans<Collection<String>> computeHighlighting(String text) {
         Matcher matcher = PATTERN.matcher(text);
@@ -71,13 +57,14 @@ public final class Configs {
         while(matcher.find()) {
             String styleClass =
                     matcher.group("KEYWORD") != null ? "keyword" :
-                            matcher.group("PAREN") != null ? "paren" :
-                                    matcher.group("BRACE") != null ? "brace" :
-                                            matcher.group("BRACKET") != null ? "bracket" :
-                                                    matcher.group("SEMICOLON") != null ? "semicolon" :
-                                                            matcher.group("STRING") != null ? "string" :
-                                                                    matcher.group("COMMENT") != null ? "comment" :
-                                                                            null; /* never happens */ assert styleClass != null;
+                            matcher.group("KEYWORD2") != null ? "keyword2" :
+                                    matcher.group("PAREN") != null ? "paren" :
+                                            matcher.group("BRACE")     != null ? "brace" :
+                                                    matcher.group("BRACKET") != null ? "bracket" :
+                                                            matcher.group("SEMICOLON") != null ? "semicolon" :
+                                                                    matcher.group("STRING") != null ? "string" :
+                                                                            matcher.group("COMMENT") != null ? "comment" :
+                                                                                    null; /* never happens */ assert styleClass != null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
             lastKwEnd = matcher.end();
@@ -85,4 +72,14 @@ public final class Configs {
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();
     }
+    public static String[] EXPRESIONES={
+            "\\s*create\\s+new\\s+resistance\\s+\\w+\\s*",
+            "\\s*create\\s+new\\s+powersource\\s+\\w+\\s*",
+            "\\s*connect\\s+\\w+\\s+to\\s+\\w+\\s*",
+            "\\s*value\\s+for\\s+\\w+\\s*=\\s*\\d+\\s+ohm\\s*",
+            "\\s*value\\s+for\\s+\\w+\\s*=\\s*\\d+ volt\\s*",
+            "\\s*add\\s+new\\s+ground\\s+\\w+\\s*",
+            "\\s*//(.+.)?\\s*",
+            "\\s*print\\s*[(][\"](.+.)?[\"][)]\\s*|print[(][\"](.+.)?[\"]\\+.+.[)]\\s*",
+    };
 }

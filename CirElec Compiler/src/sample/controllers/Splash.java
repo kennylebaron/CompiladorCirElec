@@ -45,7 +45,7 @@ public class Splash extends Preloader{
                 Parent root2;
                 try {
                     root2= FXMLLoader.load(getClass().getResource("../views/splash.fxml"));
-                    scene=new Scene(root2,500,375.2);
+                    scene=new Scene(root2,600.4,400);
                 }catch (IOException e){
                     e.printStackTrace();
                 }//llave trycatch

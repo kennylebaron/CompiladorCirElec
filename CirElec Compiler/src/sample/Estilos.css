@@ -1,44 +1,115 @@
 .fondo{
+-fx-background-color:#3F4045;
+}
+.fondoblack{
 -fx-background-color:#000000;
 }
+
 .menu{
 -fx-background-color:rgb(50,50,50);
 }
 .menu .label{
 -fx-text-fill:#FFFFFF
 }
-.progress-bar > .track {
+
+.progress-bar  .track {
 -fx-text-box-border: #636363;
 -fx-control-inner-background: #636363;
-
 }
-.keyword {
-    -fx-fill: purple;
+.editor {
+    -fx-background-color: #2B2B2B;
+    -fx-control-inner-background: #2B2B2B;
+    -fx-font-size:15;
+}
+.editor .text {
+    -fx-font-family:"Courier New", Courier, monospace;
+    -fx-fill: #ffffff;
+}
+.editor .keyword {
+    -fx-fill: #5969ff;
+}
+.editor .keyword2 {
+    -fx-fill: #ad0099;
+}
+.editor .semicolon {
     -fx-font-weight: bold;
+    -fx-fill: orange;
 }
-.semicolon {
-    -fx-font-weight: bold;
+.editor .paren {
+    -fx-fill: orange;
 }
-.paren {
-    -fx-fill: firebrick;
-    -fx-font-weight: bold;
-}
-.bracket {
+.editor .bracket {
     -fx-fill: darkgreen;
     -fx-font-weight: bold;
 }
-.brace {
+.editor .brace {
     -fx-fill: teal;
-    -fx-font-weight: bold;
 }
-.string {
-    -fx-fill: blue;
+.editor .string {
+    -fx-fill: green;
+}
+.editor .comment {
+	-fx-fill: gray;
+}
+.editor .lineno{
+    -fx-background-color: #333232;
+    -fx-padding: 0.0em 1.166667em 0.0em 0.5em;
+}
+.editor .lineno .text{
+    -fx-fill: #969494;
 }
 
-.comment {
-	-fx-fill: cadetblue;
-}
 
 .paragraph-box:has-caret {
-    -fx-background-color: #f2f9fc;
+    -fx-background-color: #3F4045 ;
 }
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: rgb(50,50,50);
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+/*    -fx-padding: 0.666667em 0.083333em 0.666667em 0.083333em;  8 1 8 1 */
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
+    -fx-text-fill: #f5f5f5;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab .tab-label{
+    -fx-alignmet: center;
+    -fx-text-fill: rgb(255,255,255);
+    -fx-text-size: 12px;
+    -fx-text-weight: bold;
+}
+.tab:selected .tab-label {
+     -fx-alignmet: center;
+     -fx-text-fill: #ffffff;
+}
+.tab-pane{
+    -fx-tab-min-width:20px;
+}
+.tab-pane .tab{
+    -fx-background-color:#315C2B ;
+}
+.tab-pane .tab:selected{
+    -fx-background-color:gray ;
+}
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-opacity: 0;
+}
+.tab-pane:top *.tab-header-area{
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.41557em 0.166667em 0.0em 0.0em;
+}
+
+.consola{
+    -fx-background-color:#212121;
+    -fx-control-inner-background:#302f2f;
+    -fx-text-fill: #ff4747;
+    -fx-font-size:15px;
+    -fx-text-box-border: transparent;
+}
+
+

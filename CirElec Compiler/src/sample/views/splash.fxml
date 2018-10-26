@@ -9,29 +9,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="375.2" prefWidth="500.0" styleClass="fondo" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Splash">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="fondoblack" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Splash">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="111.0" fitWidth="126.0" layoutX="474.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imagen/giphy.gif" />
          </image>
       </ImageView>
-      <ProgressBar fx:id="progressbar" layoutX="75.0" layoutY="301.0" prefHeight="9.0" prefWidth="350.0" progress="0.0">
+      <ProgressBar fx:id="progressbar" layoutX="24.0" layoutY="338.0" prefHeight="18.0" prefWidth="552.0" progress="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </ProgressBar>
-      <Label fx:id="lblprogress" layoutX="408.0" layoutY="328.0" text="0%" textFill="WHITE">
-         <effect>
-            <Reflection>
-               <input>
-                  <Bloom />
-               </input>
-            </Reflection>
-         </effect>
-      </Label>
-      <Label layoutX="75.0" layoutY="328.0" text="Loading" textFill="WHITE">
+      <Label fx:id="lblprogress" layoutX="539.0" layoutY="364.0" text="0%" textFill="WHITE" />
+      <Label layoutX="24.0" layoutY="364.0" text="Loading" textFill="WHITE" />
+      <Label fx:id="dotone" layoutX="77.0" layoutY="364.0" text="." textFill="WHITE">
          <effect>
             <Bloom>
                <input>
@@ -40,7 +32,7 @@
             </Bloom>
          </effect>
       </Label>
-      <Label fx:id="dotone" layoutX="118.0" layoutY="328.0" text="." textFill="WHITE">
+      <Label fx:id="dottwo" layoutX="84.0" layoutY="364.0" text="." textFill="WHITE">
          <effect>
             <Bloom>
                <input>
@@ -49,7 +41,7 @@
             </Bloom>
          </effect>
       </Label>
-      <Label fx:id="dottwo" layoutX="121.0" layoutY="328.0" text="." textFill="WHITE">
+      <Label fx:id="dotthree" layoutX="70.0" layoutY="364.0" text="." textFill="WHITE">
          <effect>
             <Bloom>
                <input>
@@ -58,14 +50,10 @@
             </Bloom>
          </effect>
       </Label>
-      <Label fx:id="dotthree" layoutX="124.0" layoutY="328.0" text="." textFill="WHITE">
-         <effect>
-            <Bloom>
-               <input>
-                  <Reflection />
-               </input>
-            </Bloom>
-         </effect>
-      </Label>
+      <ImageView fitHeight="274.0" fitWidth="331.0" layoutX="163.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Imagen/logocircuits.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
