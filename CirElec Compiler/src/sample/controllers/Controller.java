@@ -13,6 +13,8 @@ import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.reactfx.Subscription;
 import sample.Constants.Configs;
+import sample.Logica.Interprete;
+
 import java.io.File;
 import java.time.Duration;
 import java.util.regex.Matcher;
@@ -69,6 +71,7 @@ public class Controller extends Application {
         String text = codeArea.getText();
         String[] renglones=text.split("\\n");
 
+        boolean correcto=true;
         for (int i = 0; i < renglones.length; i++) {
             boolean bandera=false;
             if (!renglones[i].trim().equals("")){
@@ -81,9 +84,13 @@ public class Controller extends Application {
                 }//llave forj
                 if (bandera==false){
                         txtconsola.setText(txtconsola.getText()+ "Syntax Error: CirElec:  ("+(i+1)+")"+" \n");
+                        correcto=false;
                 }
             }
         }//llave fori
+        if (correcto){
+            Interprete in = new Interprete(text,txtconsola);
+        }
         long tfinal=System.currentTimeMillis()-tinicial;
         if (tfinal==1){
             txtconsola.setText(txtconsola.getText() + " \n" + "Process compiled in : " + tfinal + " millisecond");

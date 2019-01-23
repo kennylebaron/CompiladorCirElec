@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public final class Configs {
     public static final String Username="";
     public static final String[] KEYWORDS = new String[] {
-            "connect","component","switch","default","if","while","create","new","add"
+            "connect","component","switch","default","if","while","create","new","add","print"
     };
     public static final String[] KEYWORDS2 = new String[] {
             "node","current","voltage","ohm","ohms","volt","hertz","cable","resistance","powersource","ground"
@@ -46,7 +46,7 @@ public final class Configs {
             "connect r1 to ps1",
             "add new ground g1",
             "connect g1 to r1",
-            "if (r1 connect ps1)-->print(\"Execute process successful\")",
+            "if (r1 connect ps1)-->print[\"Process executed successfully\"]",
             ""
 
     });
@@ -74,13 +74,14 @@ public final class Configs {
         return spansBuilder.create();
     }
     public static String[] EXPRESIONES={
+            "print[(]\"(([\\s]+)?[\\w+]?([\\s]+)?)+\"[)]",
             "\\s*create\\s+new\\s+resistance\\s+\\w+\\s*",
             "\\s*create\\s+new\\s+powersource\\s+\\w+\\s*",
             "\\s*connect\\s+\\w+\\s+to\\s+\\w+\\s*",
             "\\s*value\\s+for\\s+\\w+\\s*=\\s*\\d+\\s+ohm\\s*",
             "\\s*value\\s+for\\s+\\w+\\s*=\\s*\\d+ volt\\s*",
             "\\s*add\\s+new\\s+ground\\s+\\w+\\s*",
-            "\\s*//(.+.)?\\s*",                                      //
-            "if\\s*[(]\\s*(.+.)?\\s*[)]\\s*-->\\s*print\\s*[(]\\s*[\"](.+.)?[\"]\\s*[)]\\s*|if\\s*[(]\\s*(.+.)?\\s*[)]\\s*-->\\s*print\\s*[(]\\s*[\"](.+.)?[\"]\\s*(.+.)\\s*[)]\\s*",
+            "\\s*//(.+.)?\\s*",
+            "if\\s*[(]\\s*(.+.)?\\s*[)]\\s*-->\\s*print\\s*\\[\\s*[\"](.+.)?[\"]\\s*\\]\\s*|    if\\s*[(]\\s*(.+.)?\\s*[)]\\s*-->\\s*print\\s*\\[\\s*[\"](.+.)?[\"]\\s*(.+.)\\s*\\]\\s*",
     };
 }
